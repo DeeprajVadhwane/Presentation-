@@ -99,10 +99,12 @@ if uploaded_file:
         fig, ax = plt.subplots(figsize=(8, 5))
         colors = {'A': 'gold', 'B': 'peru', 'C': 'silver'}
         if chart_type == "Bar Chart":
-            plt.bar(data['Name'], data['Marks'], color=[colors[cat] for cat in data['Category']])
+            plt.figure(figsize=(20, 15))
+            plt.barh(data['Name'], data['Marks'], color=[colors[cat] for cat in data['Category']])
         else:
+            plt.figure(figsize=(20, 15))
             grouped_data = data.groupby('Category')['Marks'].sum()
-            plt.bar(grouped_data.index, grouped_data.values, color=[colors[cat] for cat in grouped_data.index])
+            plt.barh(grouped_data.index, grouped_data.values, color=[colors[cat] for cat in grouped_data.index])
             plt.xlabel("Groups")
             plt.ylabel("Total Marks")
             plt.title("Stacked Representation of Groups")
